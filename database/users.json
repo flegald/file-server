@@ -1,0 +1,42 @@
+{
+    "0": {
+        "username": "world",
+        "password": "pbkdf2:sha256:50000$68TVq008$5bdec5a1ce09785c2616f081c36ecf4db08f93b6ea1a800ae4a87c4fc243fd98",
+        "_id": 0
+    },
+    "1": {
+        "username": "David",
+        "password": "pbkdf2:sha256:50000$mb0wvKlK$2d2154a82d878d3426d791a265245dc0f1f2515fbd746152f63d30eb95dd8498",
+        "_id": 1
+    },
+    "2": {
+        "username": "David1",
+        "password": "pbkdf2:sha256:50000$k9ryVI6G$12a559a21b1ca6026dc673280d804bf53d85f7e0ba3b66d997918af7f4f11d01",
+        "_id": 2
+    },
+    "3": {
+        "username": "David2",
+        "password": "pbkdf2:sha256:50000$2SwVnSTi$cf6b4446ce4a70bbf6bfc03ec1c4baef3659e04d8da65bc60546f9fcc91adcb0",
+        "_id": 3
+    },
+    "4": {
+        "username": "David3",
+        "password": "pbkdf2:sha256:50000$70IoAnC0$ed6a994db4dc03af296ecd3883c9582b13c5a01a17b7ccb599b833d73e318a9b",
+        "_id": 4
+    },
+    "5": {
+        "username": "David4",
+        "password": "pbkdf2:sha256:50000$nyVYpah4$7d277ab42d1e433b6d70baf5e8762dfeb3de00b319c6a296eb74a5732e8a0209",
+        "_id": 5
+    },
+    "6": {
+        "username": "David5",
+        "password": "pbkdf2:sha256:50000$JKzt78Aa$7384d9e408e4ef5a208375e4e2129c7be3388e81075a6a87a7709b503234b9e5",
+        "_id": 6
+    },
+    "7": {
+        "username": "David6",
+        "password": "pbkdf2:sha256:50000$fqhZtxP3$7d70b14fd0d0599d12ec7e04b359ff03e8f7fc16805ba7f956b20f5180bf9ec9",
+        "_id": 7
+    }
+}
