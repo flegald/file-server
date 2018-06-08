@@ -37,14 +37,24 @@ def login_user():
 	if err: return err
 	return _USERCONTROL.login(request.data)
 
-@app.route("/api/files/<filename>", methods=["PUT"])
+@app.route("/api/files/<filename>", methods=["POST", "PUT"])
 def put_file(filename):
 	data, err = _USERCONTROL.validate_token(request)
 	if err:
 		content = {"error": data}
 		return _RRC.response("403", content)
 	user_id = data["_id"]
-	file_saved = _FILECONTROL.save_file(user_id, filename, request)
+	return _FILECONTROL.save_file(user_id, filename, request)
+
+@app.route("/api/view/files", methods=["GET"])
+def view_files():
+	data, err = _USERCONTROL.validate_token(request)
+	if err:
+		content = {"error": data}
+		return _RRC.response("403", content)
+	user_id = data["_id"]
+	return _FILECONTROL.view_files(user_id)
+
 
 
 if __name__ == "__main__":

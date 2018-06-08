@@ -2,6 +2,7 @@ from server.database_control import DataBaseController as db
 from server.request_response_control import ReqResController as rrc
 from server.token_control import generate_token, decrypt_token
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 
 class UserController:
 
@@ -25,12 +26,13 @@ class UserController:
 		return verified, err
 
 	def save_user(self, username, password):
+		new_pk = False
 		try:
 			user = {"username": username, "password": generate_password_hash(password)}
-			self.db.create("users", user)
-			return False
+			new_pk = self.db.create("users", user)
+			return False, new_pk
 		except Exception as e:
-			return e
+			return e, new_pk
 
 	def register_user(self, user_info):
 		username = user_info["username"]
@@ -42,19 +44,22 @@ class UserController:
 		verified, err = self.verify_register_requirements(username, password)
 		if err:
 			content = {"error": err}
+			print(err)
 			return self.rrc.response("400", content)
 
-		save_error = self.save_user(username, password)
+		save_error, new_pk = self.save_user(username, password)
 		if save_error:
 			content = {"error": save_error}
+			print(save_error)
 			return self.rrc.response("400", content)
+		os.makedirs(os.path.join(os.getcwd(), "user_images", str(new_pk)))
 		return self.rrc.response("204", {"message": "success"})
 
 	def login(self, user_info):
 		username = user_info["username"]
 		password = user_info["password"]
 		user = self.db.find("users", "username", username)
-		if check_password_hash(user["password"], password):
+		if user and check_password_hash(user["password"], password):
 			token = generate_token(user)
 			content = {"token": token.decode("utf8")}
 			return self.rrc.response("200", content)

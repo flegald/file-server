@@ -1,13 +1,19 @@
 $(document).ready(function(){
-	var uploadButton = $("#upload-button")
 
-	uploadButton.on("click", function(){
-		file = $("#file-form").prop("files")[0];
-		$.ajax(
-			url: "/api/files/" + file.name,
-			method: "PUT",
-			headers: {"content-type": "image/jpeg"}
-			)
-	})
+	$( '#upload-form' )
+	  .submit( function( e ) {
+	    $.ajax( {
+	      url: '/api/files/hello',
+	      type: 'POST',
+	      data: new FormData( this ),
+	      headers: {"X-Session": localStorage.getItem("sessionJWT")},
+	      processData: false,
+	      contentType: false,
+	      complete: function(data){
+	      	console.log(data);
+	      }
+	    } );
+	    e.preventDefault();
+	  } );
 
 })

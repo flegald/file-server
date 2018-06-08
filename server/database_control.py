@@ -40,4 +40,5 @@ class DataBaseController:
 		else:
 			self.files = db
 		self.save_db(domain, db)
+		return new_pk
 		
