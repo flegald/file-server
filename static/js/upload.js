@@ -10,7 +10,11 @@ $(document).ready(function(){
 	      processData: false,
 	      contentType: false,
 	      complete: function(data){
-	      	console.log(data);
+			if (data.status != 201) {
+				alert("Error: " + data.status + " " + data.responseText)
+			} else {
+				alert("Success: " + data.status)
+			}
 	      }
 	    } );
 	    e.preventDefault();

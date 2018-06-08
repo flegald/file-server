@@ -11,10 +11,10 @@ $(document).ready(function(){
 			method: "POST",
 			data:{"username": username, "password": password},
 			complete: function(data){
-				console.log(JSON.parse(data.responseText))
 				token = JSON.parse(data.responseText)["token"]
 				if ( token != undefined ) {
 					localStorage.setItem("sessionJWT", token)
+					alert("Logged In")
 				} else {
 					alert("Invalid Credentials")
 				}
@@ -30,7 +30,11 @@ $(document).ready(function(){
 			method: "POST",
 			data:{"username": username, "password": password},
 			complete: function(data){
-				console.log("hello")
+				if (data.status != 204) {
+					alert("Error: " + data.status + " " + data.responseText)
+				} else {
+					alert("Success: " + data.status)
+				}
 			}
 		})
 	})

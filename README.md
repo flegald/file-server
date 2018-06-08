@@ -28,28 +28,45 @@ Install requirements:
 
 ### What's (Mostly) Working
 
-```POST: /api/register```
+* ```POST: /api/register```
 
-```JSON BODY: { "username": {{username}}, "password": {{password}} }```
+	```JSON BODY: { "username": {{username}}, "password": {{password}} }```
 
-Creates new user in "DB".
-
-__
-
-```POST: /api/login```
-
-```JSON BODY: { "username": {{username}}, "password": {{password}} }```
-
-If user exists, will return JWT token
+	Creates new user in "DB".
 
 __
 
-### Notes 
+* ```POST: /api/login```
 
-"DB" is json files stored in```/database```. A live DB was excluded for time constraints.
+	```JSON BODY: { "username": {{username}}, "password": {{password}} }```
 
-More time was taken than intended to create re-usable code. This can be seen in the controller
+	If user exists, will return JWT token
 
-files.
+* ```POST: /api/files/<filename>```
 
-Last work was being done on the file upload endpoint.
+	```File in post```
+
+	Will upload a file to users personal file folder.
+
+* ```GET: /api/view/files```
+
+	Will spit out list of all files in users folder.
+
+__
+
+Functionality can all be interacted with in very basic frontend
+
+* Start server and navigate to ```http://127.0.0.1:5000/```
+
+* Enter username and password in inputs and click ```Register```
+	User with hashed password will be created in ```database/users.json```
+	Directory for users folder (based on newly created user id in ```user_images/<user_id>```)
+
+* Use same inputs with username and password and click ```Login```
+	JWT token will be passed into local storage.
+
+* Select a file to upload and click ```Upload```.
+	File will then be uploaded in the users directory under ```user_images/<user_id>```.
+
+
+* Click ```View Files``` To see list of uploaded files by user.
